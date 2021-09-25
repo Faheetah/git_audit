@@ -8,7 +8,7 @@ Recursively traverses directories and determines if the directory has a .git sub
 
 GitAudit includes a mix task that can be globally installed.
 
-`mix archive.install git https://github.com/faheetah/git_audit/`
+`mix archive.install github faheetah/git_audit`
 
 ## Usage
 
