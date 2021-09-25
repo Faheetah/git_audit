@@ -1,11 +1,10 @@
 defmodule Mix.Tasks.GitAudit do
   use Mix.Task
 
-  def run([path | _]) do
-    GitAudit.print_report(path)
-  end
+  def run(params) do
+    {args, [path | _]} = OptionParser.parse!(params, strict: [ansi: :boolean])
 
-  def run(_) do
-    IO.puts "Usage: mix git_audit PATH"
+    ansi = Keyword.get(args, :ansi)
+    GitAudit.print_report(path, ansi)
   end
 end

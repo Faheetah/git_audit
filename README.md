@@ -15,3 +15,7 @@ GitAudit includes a mix task that can be globally installed.
 Run the git_audit task with a path. That's it. It will recursively audit the path.
 
 `mix git_audit PATH`
+
+For no colors, use the `--no-ansi` flag, i.e.
+
+`mix get_audit PATH --no-ansi`

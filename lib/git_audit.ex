@@ -29,16 +29,23 @@ defmodule GitAudit do
 
   def report(path) do
     walk_directories(path)
+    |> Enum.sort()
     |> Enum.map(fn p ->
       Task.async(fn -> check_path(p) end)
     end)
     |> Task.await_many()
   end
 
-  def print_report(path) do
+  def print_report(path, ansi) do
+    status_colors = %{ok: 32, unpushed: 33, dirty: 31}
+
     report(path)
     |> Enum.each(fn {status, path} ->
-      IO.puts "(#{status}) #{path}"
+      if ansi || ansi == nil do
+        IO.puts "\e[1;#{status_colors[status]}m(#{status}) #{path}\e[0m"
+      else
+        IO.puts "(#{status}) #{path}"
+      end
     end)
   end
 end
