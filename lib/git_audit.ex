@@ -27,4 +27,9 @@ defmodule GitAudit do
     walk_directories(path)
     |> Enum.map(&check_path/1)
   end
+
+  def print_report(path) do
+    report(path)
+    |> IO.inspect
+  end
 end
