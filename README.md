@@ -1,21 +1,17 @@
 # GitAudit
 
-**TODO: Add description**
+**WARNING: This script will recursively check directories, which may be CPU intensive for very large directories.**
+
+Recursively traverses directories and determines if the directory has a .git subdirectory, then checks whether the repo is dirty or if there are any unpushed commits. The script will stop traversing when a directory contains a .git directory, to avoid unnecessarily recursing into vendored dependencies. Helpful to audit a local development environment for work that has not been pushed.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `git_audit` to your list of dependencies in `mix.exs`:
+GitAudit includes a mix task that can be globally installed.
 
-```elixir
-def deps do
-  [
-    {:git_audit, "~> 0.1.0"}
-  ]
-end
-```
+`mix archive.install git https://github.com/faheetah/git_audit/`
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/git_audit](https://hexdocs.pm/git_audit).
+## Usage
 
+Run the git_audit task with a path. That's it. It will recursively audit the path.
+
+`mix git_audit PATH`
