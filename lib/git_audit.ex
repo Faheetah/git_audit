@@ -9,7 +9,7 @@ defmodule GitAudit do
   def walk_directories(base_path) do
     if File.dir?(base_path) do
       found_paths = File.ls!(base_path)
-      if Enum.member?(found_paths, ".git") and File.dir?(".git") do
+      if Enum.member?(found_paths, ".git") and File.dir?(Path.join(base_path, ".git")) do
         [base_path]
       else
         Enum.flat_map(found_paths, fn dir -> walk_directories(Path.join(base_path, dir)) end)
