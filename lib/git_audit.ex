@@ -7,11 +7,15 @@ defmodule GitAudit do
   Walks directories and reports all top level that has a .git folder in it
   """
   def walk_directories(base_path) do
-    found_paths = File.ls!(base_path)
-    if Enum.member?(found_paths, ".git") and File.dir?(".git") do
-      [base_path]
+    if File.dir?(base_path) do
+      found_paths = File.ls!(base_path)
+      if Enum.member?(found_paths, ".git") and File.dir?(".git") do
+        [base_path]
+      else
+        Enum.flat_map(found_paths, fn dir -> walk_directories(Path.join(base_path, dir)) end)
+      end
     else
-      Enum.flat_map(found_paths, fn dir -> walk_directories(Path.join(base_path, dir)) end)
+      []
     end
   end
 

@@ -4,9 +4,11 @@ defmodule GitauditTest do
   @clone_repos ~w[clean dirty unpushed subdir/clean subdir/dirty subdir/unpushed]
 
   setup_all do
-    File.mkdir_p!("false/positive")
-
     File.rm_rf!("test/repos")
+
+    File.mkdir_p!("test/repos/false/positive")
+    File.touch("test/repos/false/positive/file")
+
     File.mkdir_p!(@origin_repo)
     File.write!("#{@origin_repo}/.gitignore", "/nested/")
     System.cmd("git", ["init"], cd: @origin_repo)
