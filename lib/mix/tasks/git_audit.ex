@@ -9,7 +9,7 @@ defmodule Mix.Tasks.GitAudit do
         ansi = Keyword.get(args, :ansi)
         GitAudit.print_report(path, ansi)
 
-      _ -> IO.puts("Please specify a path: mix git_archive PATH"
+      _ -> IO.puts("Please specify a path: mix git_archive PATH")
     end
   end
 end
