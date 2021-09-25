@@ -1,4 +1,6 @@
 defmodule Mix.Tasks.GitAudit do
+  @moduledoc "Recursively check for dirty and unpushed subdirectories for a given path"
+
   use Mix.Task
 
   def run(params) do
