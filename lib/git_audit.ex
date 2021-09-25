@@ -42,9 +42,9 @@ defmodule GitAudit do
     report(path)
     |> Enum.each(fn {status, path} ->
       if ansi || ansi == nil do
-        IO.puts "\e[1;#{status_colors[status]}m(#{status}) #{path}\e[0m"
+        IO.write "\e[1;#{status_colors[status]}m(#{status}) #{path}\e[0m"
       else
-        IO.puts "(#{status}) #{path}"
+        IO.write "(#{status}) #{path}"
       end
     end)
   end
