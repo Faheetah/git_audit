@@ -34,6 +34,8 @@ defmodule GitAudit do
 
   def print_report(path) do
     report(path)
-    |> IO.inspect
+    |> Enum.each(fn {status, path} ->
+      IO.puts "(#{status}) #{path}"
+    end)
   end
 end
