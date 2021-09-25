@@ -29,7 +29,10 @@ defmodule GitAudit do
 
   def report(path) do
     walk_directories(path)
-    |> Enum.map(&check_path/1)
+    |> Enum.map(fn p ->
+      Task.async(fn -> check_path(p) end)
+    end)
+    |> Task.await_many()
   end
 
   def print_report(path) do
