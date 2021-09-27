@@ -16,9 +16,11 @@ defmodule Mix.Tasks.GitAudit do
   The following commands are ran on each git directory to determine the status:
   
   dirty: git status --porcelain
+  
   unpushed: git log --branches --not --remotes --oneline
   
   If no condition matches, the directory is marked as ok
+  
   """
 
   use Mix.Task
