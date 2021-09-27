@@ -19,3 +19,12 @@ Run the git_audit task with a path. That's it. It will recursively audit the pat
 For no colors, use the `--no-ansi` flag, i.e.
 
 `mix get_audit PATH --no-ansi`
+
+## Results
+
+The following commands are ran on each git directory to determine the status:
+  
+**dirty:** `git status --porcelain`
+**unpushed:** `git log --branches --not --remotes --oneline`
+  
+If no condition matches, the directory is marked as ok
