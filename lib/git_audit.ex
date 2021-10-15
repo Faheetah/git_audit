@@ -2,6 +2,16 @@ defmodule GitAudit do
   @moduledoc """
   Documentation for `GitAudit`.
   """
+  
+  def main(params) do
+    case OptionParser.parse!(params, strict: [ansi: :boolean]) do
+      {args, [path | _]} ->
+        ansi = Keyword.get(args, :ansi)
+        GitAudit.print_report(path, ansi)
+
+      _ -> IO.puts("Please specify a path: mix git_archive PATH")
+    end
+  end
 
   @doc """
   Walks directories and reports all top level that has a .git folder in it
